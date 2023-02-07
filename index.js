@@ -4,9 +4,13 @@ const path = require("path");
 const fs = require("fs-extra");
 const multer = require("multer");
 const excelToJson = require("convert-excel-to-json");
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
 const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 const app = express();
+const axios = require("axios");
+const File = require("./model/File");
 
 // middleware - cors to allow access from all domains, use json and serve static files
 // app.use(bodyParser.json());
@@ -16,6 +20,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+
+// connect to DB
+dotenv.config();
+mongoose
+  .connect(process.env.DB_URI)
+  .then(console.log(">>> MONGO_DB CONNECTION ESTABLISHED <<<"))
+  .catch((err) => console.log("ERROR OCCURED WHILE CONNECTING TO DB:\n", err));
 
 // file upload destination
 const uploads = multer({ dest: "uploads/" });
@@ -40,6 +51,14 @@ app.post("/upload", uploads.single("the-file"), (req, res) => {
       });
       // remove the file after its been processed to JSON then respond with the JSON data
       fs.remove(filePath);
+      // persist data
+      console.log("sending:", excelData);
+      const newFile = new File(excelData);
+      newFile.save();
+      // res.status(200).json(savedFile);
+      console.log("SUCCESS!");
+
+      // axios.post();
       res.status(200).json(excelData);
     }
     // catch errors and respond with appropriate status code
