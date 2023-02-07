@@ -1,13 +1,27 @@
 // send data
 const sendData = async (file) => {
-  const response = await fetch("/read", {
-    method: "post",
-    headers: { "Content-Type": "Application/json" },
-    body: JSON.stringify({ file }),
-  });
-  const responseData = await response.json();
-  console.log(responseData);
-  return responseData;
+  try {
+    const response = await fetch("/upload", {
+      method: "post",
+      headers: { "Content-Type": "Application/json" },
+      body: JSON.stringify({ file }),
+    });
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.log("error occured while sending data to server:\n", error);
+  }
+};
+
+// get financial data
+const fetchData = async () => {
+  try {
+    const response = await fetch("/insights");
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.log("error occured while fetching data from DB:\n", error);
+  }
 };
 
 // form submit
@@ -22,10 +36,9 @@ document.querySelector("form").addEventListener("submit", (e) => {
     body: formData,
   })
     .then((res) => res.json())
-    .then(() => {
-      window.location.replace("/insights");
-    })
-    .catch((error) => {
-      console.log("something went wrong:", error);
+    .then((data) => {
+      console.log("sent data:\n", data);
+      // fetch from DB
+      fetchData().then((dbRes) => console.log("fetched data:\n", dbRes));
     });
 });

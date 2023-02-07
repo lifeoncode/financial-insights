@@ -72,8 +72,7 @@ app.post("/upload", uploads.single("the-file"), (req, res) => {
 // FETCH THE DATA
 app.get("/insights", async (req, res) => {
   try {
-    let files;
-    files = await File.find();
+    const files = await File.find();
     res.status(200).json(files);
   } catch (err) {
     console.log("\nerror while fetching docs:\n", err);
