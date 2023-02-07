@@ -52,7 +52,8 @@ app.post("/upload", uploads.single("the-file"), (req, res) => {
       // remove the file after its been processed to JSON then respond with the JSON data
       fs.remove(filePath);
       // persist data
-      console.log("sending:", excelData);
+      const oldFile = new File();
+      oldFile.delete();
       const newFile = new File(excelData);
       newFile.save();
       // res.status(200).json(savedFile);
@@ -65,6 +66,18 @@ app.post("/upload", uploads.single("the-file"), (req, res) => {
   } catch (error) {
     console.log("ERROR:\n", error);
     res.status(500).json(error);
+  }
+});
+
+// FETCH THE DATA
+app.get("/insights", async (req, res) => {
+  try {
+    let files;
+    files = await File.find();
+    res.status(200).json(files);
+  } catch (err) {
+    console.log("\nerror while fetching docs:\n", err);
+    res.status(500).json(err);
   }
 });
 

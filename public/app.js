@@ -1,3 +1,4 @@
+// send data
 const sendData = async (file) => {
   const response = await fetch("/read", {
     method: "post",
@@ -21,7 +22,9 @@ document.querySelector("form").addEventListener("submit", (e) => {
     body: formData,
   })
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then(() => {
+      window.location.replace("/insights");
+    })
     .catch((error) => {
       console.log("something went wrong:", error);
     });
