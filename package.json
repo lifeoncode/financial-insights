@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/lifeoncode/revenue-insights#readme",
   "dependencies": {
+    "axios": "^1.3.2",
+    "body-parser": "^1.20.1",
     "convert-excel-to-json": "^1.7.0",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "fs-extra": "^11.1.0",
     "multer": "^1.4.5-lts.1"
