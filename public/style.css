@@ -115,3 +115,16 @@ input.hidden {
   z-index: -2;
   opacity: 0;
 }
+
+/* media queries */
+@media only screen and (max-width: 1000px) {
+  body {
+    background-image: url("./img/bg-tablet.svg");
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #home {
+    width: 320px;
+  }
+}
