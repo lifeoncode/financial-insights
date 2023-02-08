@@ -34,7 +34,6 @@ const updateUI = (dbData) => {
     setTimeout(() => {
       // render the graph
       document.querySelector(".chart-container").classList.remove("hide");
-      console.log("rendering graph");
       const ctx = document.querySelector("#chart-output").getContext("2d");
       const labels = [];
       // populate labels with months
@@ -62,14 +61,12 @@ const updateUI = (dbData) => {
         let val = Number(i.Expenses.replace(/[^0-9.-]+/g, ""));
         data.datasets[0].data.push(val);
       }
-      console.log(data.datasets[0].data);
 
       // populate expense datasets
       for (let i of dbDataObj) {
         let val = Number(i.Expenses.replace(/[^0-9.-]+/g, ""));
         data.datasets[1].data.push(val);
       }
-      console.log(data.datasets[1].data);
 
       // config
       const config = {
@@ -77,6 +74,15 @@ const updateUI = (dbData) => {
         data: data,
         options: {
           responsive: true,
+          scales: {
+            y: {
+              ticks: {
+                callback: function (value) {
+                  return `R${value}`;
+                },
+              },
+            },
+          },
         },
       };
 
