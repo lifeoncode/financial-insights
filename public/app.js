@@ -25,8 +25,9 @@ const fetchData = async () => {
 };
 
 // update UI function
-const updateUI = (data) => {
+const updateUI = (dbData) => {
   document.querySelector("#home").classList.add("fade");
+  let dbDataObj = dbData[dbData.length - 1]["Sheet 1"];
   setTimeout(() => {
     document.querySelector("#home").classList.add("hide");
     // render the graph
@@ -35,20 +36,11 @@ const updateUI = (data) => {
       document.querySelector(".chart-container").classList.remove("hide");
       console.log("rendering graph");
       const ctx = document.querySelector("#chart-output").getContext("2d");
-      const labels = [
-        "jan",
-        "feb",
-        "mar",
-        "apr",
-        "may",
-        "jun",
-        "jul",
-        "aug",
-        "sep",
-        "oct",
-        "nov",
-        "dec",
-      ];
+      const labels = [];
+      // populate labels with months
+      for (let i of dbDataObj) {
+        labels.push(i.Month);
+      }
 
       // data
       const data = {
@@ -66,6 +58,11 @@ const updateUI = (data) => {
           },
         ],
       };
+
+      // populate datasets with income and expense data
+      // for (let i of dbDataObj) {
+      //   labels.push(i.Month);
+      // }
 
       // config
       const config = {
