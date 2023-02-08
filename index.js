@@ -11,6 +11,8 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 const axios = require("axios");
 const File = require("./model/File");
+DB_URI =
+  "mongodb+srv://nduduzo:yI2FQI7FUGLwrFem@cluster0.17eozap.mongodb.net/finsights?retryWrites=true&w=majority";
 
 // middleware - cors to allow access from all domains, use json and serve static files
 // app.use(bodyParser.json());
@@ -24,7 +26,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // connect to DB
 dotenv.config();
 mongoose
-  .connect(process.env.DB_URI)
+  .connect(DB_URI)
   .then(console.log(">>> MONGO_DB CONNECTION ESTABLISHED <<<"))
   .catch((err) => console.log("ERROR OCCURED WHILE CONNECTING TO DB:\n", err));
 
