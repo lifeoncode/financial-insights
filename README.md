@@ -29,6 +29,7 @@
 <li>At this point you should have a folder named <strong><em>financial-insights</em></strong> somewhere on your computer (depending on where you cloned/unzipped from)</li>
 <li>Open your Terminal/Command line and run <code>cd financial-insights</code> or find the folder and right click then select "open in terminal"</li>
 <li>From you terminal, run <code>npm install</code> if you get "permission denied" error, run <code>sudo npm install</code> (this will install all dependencies the application needs in order to run properly)</li>
+<li>After dependencies finish installing, run <code>node index.js</code></li>
 <li>You should see "server running: http://localhost:5000" on your terminal/command line</li>
 <li>Open a web browser and navidate to <code>http://localhost:5000</code></li>
 </ol>
