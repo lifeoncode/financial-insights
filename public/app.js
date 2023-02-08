@@ -1,42 +1,38 @@
-// send data
-const sendData = async (file) => {
-  try {
-    const response = await fetch("/upload", {
-      method: "post",
-      headers: { "Content-Type": "Application/json" },
-      body: JSON.stringify({ file }),
-    });
-    const responseData = await response.json();
-    return responseData;
-  } catch (error) {
-    console.log("error occured while sending data to server:\n", error);
-  }
-};
-
-// get financial data
+// fetch data
+// send request to the server to fetch all the data stored in database
 const fetchData = async () => {
   try {
     const response = await fetch("/insights");
     const responseData = await response.json();
     return responseData;
   } catch (error) {
-    console.log("error occured while fetching data from DB:\n", error);
+    console.log("ERROR OCCURED WHILE FETCHING DATA FROM DB:\n", error);
   }
 };
 
 // update UI function
+// function takes data fetched from DB
+// selects and updates the relevant elements in the DOM with the relevant data
 const updateUI = (dbData) => {
-  document.querySelector("#home").classList.add("fade");
+  const homeDiv = document.querySelector("#home");
+  homeDiv.classList.add("fade");
   let dbDataObj = dbData[dbData.length - 1]["Sheet 1"];
+  // delay half a second to allow fade animation - this is just for UX
   setTimeout(() => {
-    document.querySelector("#home").classList.add("hide");
-    // render the graph
+    homeDiv.classList.add("hide");
+    // render the graph after form is no longer displayed
     setTimeout(() => {
+      const chartContainer = document.querySelector(".chart-container");
+      // on tablet & phone screens - not much space to work with
+      // remove the bg image to allow graph data to fill the whole screen
       if (screen.width <= 900) {
         document.body.style.backgroundImage = "none";
-        document.querySelector(".chart-container").style.width = "90vw";
+        chartContainer.style.width = "90vw";
       }
-      document.querySelector(".chart-container").classList.remove("hide");
+      // leave the bg image on bigger screens
+      chartContainer.classList.remove("hide");
+      // ctx is the main canvas where graph data will be rendered
+      // the CTX is convention for for the library "chart.js"
       const ctx = document.querySelector("#chart-output").getContext("2d");
       const labels = [];
       // populate labels with months
@@ -44,7 +40,7 @@ const updateUI = (dbData) => {
         labels.push(i.Month);
       }
 
-      // data
+      // data points
       const data = {
         labels,
         datasets: [
@@ -55,7 +51,7 @@ const updateUI = (dbData) => {
           },
           {
             data: [],
-            label: "expense",
+            label: "expenses",
             backgroundColor: "orangered",
           },
         ],
@@ -67,13 +63,13 @@ const updateUI = (dbData) => {
         data.datasets[0].data.push(val);
       }
 
-      // populate expense datasets
+      // populate expenses datasets
       for (let i of dbDataObj) {
         let val = Number(i.Expenses.replace(/[^0-9.-]+/g, ""));
         data.datasets[1].data.push(val);
       }
 
-      // config
+      // configure the graph
       const config = {
         type: "bar",
         data: data,
@@ -91,13 +87,13 @@ const updateUI = (dbData) => {
         },
       };
 
-      // chart
-      const chart = new Chart(ctx, config);
+      // render graph to DOM canvas
+      new Chart(ctx, config);
     }, 1000);
   }, 500);
 };
 
-// form submit
+// form submition event
 document.querySelector("form").addEventListener("submit", (e) => {
   e.preventDefault();
   const userFile = document.querySelector("#file-input").files[0];
@@ -110,7 +106,6 @@ document.querySelector("form").addEventListener("submit", (e) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("sent data:\n", data);
       // fetch from DB
       fetchData().then((dbRes) => {
         console.log("fetched data:\n", dbRes);
