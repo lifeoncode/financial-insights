@@ -47,22 +47,29 @@ const updateUI = (dbData) => {
         labels,
         datasets: [
           {
-            data: [
-              445, 244, 7778, 8965, 784, 451, 124, 457, 778, 7895, 451, 423,
-            ],
+            data: [],
             label: "income",
           },
           {
-            data: [112, 756, 132, 45, 125, 47, 752, 12, 451, 142, 244, 123],
+            data: [],
             label: "expense",
           },
         ],
       };
 
-      // populate datasets with income and expense data
-      // for (let i of dbDataObj) {
-      //   labels.push(i.Month);
-      // }
+      // populate income datasets
+      for (let i of dbDataObj) {
+        let val = Number(i.Expenses.replace(/[^0-9.-]+/g, ""));
+        data.datasets[0].data.push(val);
+      }
+      console.log(data.datasets[0].data);
+
+      // populate expense datasets
+      for (let i of dbDataObj) {
+        let val = Number(i.Expenses.replace(/[^0-9.-]+/g, ""));
+        data.datasets[1].data.push(val);
+      }
+      console.log(data.datasets[1].data);
 
       // config
       const config = {
