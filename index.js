@@ -81,4 +81,6 @@ app.get("/insights", async (req, res) => {
 });
 
 // run server
-app.listen(PORT, () => console.log(`SERVER RUNNING: [PORT ${PORT}]`));
+app.listen(PORT, () =>
+  console.log(`SERVER RUNNING: [http://localhost:${PORT}]`)
+);

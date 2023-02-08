@@ -51,17 +51,19 @@ const updateUI = (dbData) => {
           {
             data: [],
             label: "income",
+            backgroundColor: "blue",
           },
           {
             data: [],
             label: "expense",
+            backgroundColor: "orangered",
           },
         ],
       };
 
       // populate income datasets
       for (let i of dbDataObj) {
-        let val = Number(i.Expenses.replace(/[^0-9.-]+/g, ""));
+        let val = Number(i.Income.replace(/[^0-9.-]+/g, ""));
         data.datasets[0].data.push(val);
       }
 
