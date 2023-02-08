@@ -32,7 +32,10 @@ const updateUI = (dbData) => {
     document.querySelector("#home").classList.add("hide");
     // render the graph
     setTimeout(() => {
-      // render the graph
+      if (screen.width <= 900) {
+        document.body.style.backgroundImage = "none";
+        document.querySelector(".chart-container").style.width = "90vw";
+      }
       document.querySelector(".chart-container").classList.remove("hide");
       const ctx = document.querySelector("#chart-output").getContext("2d");
       const labels = [];
