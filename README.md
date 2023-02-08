@@ -5,7 +5,7 @@
 <p>As a user, you enter details such as your name, surname and date of birth. Then you need to upload an excel spreadsheet file containing income and expenses information for a given numbe of months.<br>The application reads this information and gives you a visual representation of it in the form of an interactive graph.</p>
 
 <h3>How to run on local machine</h3>
-<p>If you prefer to use this application with the cource (i.e run it from your local machine), the steps below outline how you can do exactly that.</p>
+<p>If you prefer to use this application with the source code (i.e run it from your local machine), the steps below outline how you can do exactly that.</p>
 <p><strong><em>NOTE: There are a few things you'll need to have installed on your computer to run the application:</em></strong></p>
 <ul>
 <li><strong>Node.Js</strong> (this app is built in Javascript, you'll need Node to run the server on your computer)</li>
