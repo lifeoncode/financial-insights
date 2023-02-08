@@ -32,6 +32,8 @@ const updateUI = (data) => {
     // render the graph
     setTimeout(() => {
       // render the graph
+      document.querySelector(".chart-container").classList.remove("hide");
+      console.log("rendering graph");
       const ctx = document.querySelector("#chart-output").getContext("2d");
       const labels = [
         "jan",
