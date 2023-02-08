@@ -4,13 +4,68 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Finsight</title>
   </head>
   <body>
-    <form>
-      <input type="file" id="file-input" name="the-file" required />
-      <button type="submit">send</button>
-    </form>
+    <!-- home -->
+    <div id="home">
+      <form>
+        <!-- firstname -->
+        <input
+          type="text"
+          name="first-name"
+          id="first-name-input"
+          placeholder="First name"
+          required
+        />
+        <!-- lastname -->
+        <input
+          type="text"
+          name="last-name"
+          id="last-name-input"
+          placeholder="Last name"
+          required
+        />
+        <!-- dob -->
+        <input
+          type="text"
+          name="date-of-birth"
+          id="date-input"
+          placeholder="Date of birth"
+          onfocus="(this.type='date')"
+          required
+        />
+        <!-- file -->
+        <div class="formgroup">
+          <label for="file-input" title="upload an excel file">
+            <i class="fa-solid fa-file-arrow-up"></i>
+          </label>
+          <input
+            type="file"
+            id="file-input"
+            name="the-file"
+            class="hidden"
+            required
+          />
+          <button type="submit">send</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- chart canvas -->
+    <div class="chart-container hide">
+      <canvas id="chart-output"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./app.js" defer></script>
   </body>
 </html>

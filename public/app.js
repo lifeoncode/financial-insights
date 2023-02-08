@@ -24,6 +24,62 @@ const fetchData = async () => {
   }
 };
 
+// update UI function
+const updateUI = (data) => {
+  document.querySelector("#home").classList.add("fade");
+  setTimeout(() => {
+    document.querySelector("#home").classList.add("hide");
+    // render the graph
+    setTimeout(() => {
+      // render the graph
+      const ctx = document.querySelector("#chart-output").getContext("2d");
+      const labels = [
+        "jan",
+        "feb",
+        "mar",
+        "apr",
+        "may",
+        "jun",
+        "jul",
+        "aug",
+        "sep",
+        "oct",
+        "nov",
+        "dec",
+      ];
+
+      // data
+      const data = {
+        labels,
+        datasets: [
+          {
+            data: [
+              445, 244, 7778, 8965, 784, 451, 124, 457, 778, 7895, 451, 423,
+            ],
+            label: "income",
+          },
+          {
+            data: [112, 756, 132, 45, 125, 47, 752, 12, 451, 142, 244, 123],
+            label: "expense",
+          },
+        ],
+      };
+
+      // config
+      const config = {
+        type: "bar",
+        data: data,
+        options: {
+          responsive: true,
+        },
+      };
+
+      // chart
+      const chart = new Chart(ctx, config);
+    }, 1000);
+  }, 500);
+};
+
 // form submit
 document.querySelector("form").addEventListener("submit", (e) => {
   e.preventDefault();
@@ -39,6 +95,9 @@ document.querySelector("form").addEventListener("submit", (e) => {
     .then((data) => {
       console.log("sent data:\n", data);
       // fetch from DB
-      fetchData().then((dbRes) => console.log("fetched data:\n", dbRes));
+      fetchData().then((dbRes) => {
+        console.log("fetched data:\n", dbRes);
+        updateUI(dbRes);
+      });
     });
 });
