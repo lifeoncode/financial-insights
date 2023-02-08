@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #fafafa;
+  background-image: url("./img/bg.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* everything with class hide is not displayed */
+.hide {
+  display: none;
+}
+
+/* everything with class fade is not visible */
+.fade {
+  opacity: 0;
+}
+
+.chart-container {
+  position: relative;
+  width: 60vw;
+  transition: all 0.5s ease;
+}
+
+#home {
+  width: 350px;
+  margin-top: 50px;
+  transition: all 0.5s ease;
+}
+
+form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  background-color: transparent;
+  outline: none;
+  transition: all 0.3s ease;
+  border: 0;
+  border-bottom: 1px solid #a7a7a7;
+  color: #242424;
+  font-size: 14px;
+}
+
+form input:focus {
+  border-color: #000;
+}
+
+/* div containing file upload button and submit button */
+form .formgroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 50px;
+  overflow: hidden;
+  background-color: rgb(27, 40, 54);
+  border-radius: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.formgroup label {
+  padding: calc(12px - 4px) 0;
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 30px;
+  color: #fafafa;
+  flex: 0.5;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.formgroup label:hover {
+  transform: scale(1.2);
+}
+
+form button {
+  flex: 2;
+  border: 0;
+  padding: 12px;
+  border-radius: 30px;
+  background-color: rgb(46, 46, 228);
+  color: #fafafa;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+form button:hover {
+  background-color: rgb(24, 128, 254);
+}
+
+/* file input is hidden, display the label instead */
+input.hidden {
+  position: absolute;
+  z-index: -2;
+  opacity: 0;
+}
