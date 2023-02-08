@@ -32,4 +32,5 @@
 <li>After dependencies finish installing, run <code>nodemon index.js</code></li>
 <li>You should see "server running: http://localhost:5000" on your terminal/command line</li>
 <li>Open a web browser and navidate to <code>http://localhost:5000</code></li>
+<li>You can use the "sample.xlsx" file that comes with the repository to test how the application works and for referencing how your own file should be structured</li>
 </ol>
