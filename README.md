@@ -6,12 +6,12 @@
 
 <h3>How to run on local machine</h3>
 <p>If you prefer to use this application with the source code (i.e run it from your local machine), the steps below outline how you can do exactly that.</p>
-<p><strong><em>NOTE: There are a few things you'll need to have installed on your computer to run the application:</em></strong></p>
+<p><strong><em>NOTE: There's a few things you'll need to have installed on your computer to run the application:</em></strong></p>
 <ul>
-<li><strong>Node.Js</strong> (this app is built in Javascript, you'll need Node to run the server on your computer)</li>
-<li><strong>Text editor</strong> (this is not exactly required, but if you're gonna dive in the source code, then you'll need some sort of text editor/IDE such as VScode)</li>
-<li><strong>Command line or Terminal</strong> (you'll need this to execute script files and install dependencies the great thing about having an IDE/text editor is that it has an in-built terminal)</li>
-<li><strong>Web browser</strong> (when you run the application, it will open your default web browser, make sure you have one installed)</li>
+<li><strong>Node.Js</strong> (this app is built in Javascript, you'll need Node.js to run the server on your computer)</li>
+<li><strong>Text editor</strong> (this is not required, but if you're gonna dive in the source code, then you'll need some sort of text editor/IDE such as VScode)</li>
+<li><strong>Command line or Terminal</strong> (you'll need this to execute script files and install dependencies, the great thing about having an IDE/text editor is that it has an in-built terminal)</li>
+<li><strong>Web browser</strong> (when you run the application, you'll need to open a web browser, make sure you have one installed)</li>
 </ul>
 
 <h4>Here are links to install any/all of the above if you don't have them on your computer</h4>
@@ -25,5 +25,10 @@
 <h4>Steps:</h4>
 <ol>
 <li>Clone or Download the repository (to clone, open your terminal/command line and run <code>git clone https://github.com/lifeoncode/financial-insights</code>) (for downloading you can click the "code" green button on this repository and click "download zip")</li>
-<li>Open your Terminal/Command line</li>
+<li>If you downloaded the zip file, find it from you Downloads folder and unzip it (this only applies if you choose to download instead of clone)</li>
+<li>At this point you should have a folder named <strong><em>financial-insights</em></strong> somewhere on your computer (depending on where you cloned/unzipped from)</li>
+<li>Open your Terminal/Command line and run <code>cd financial-insights</code> or find the folder and right click then select "open in terminal"</li>
+<li>From you terminal, run <code>npm install</code> if you get "permission denied" error, run <code>sudo npm install</code> (this will install all dependencies the application needs in order to run properly)</li>
+<li>You should see "server running: http://localhost:5000" on your terminal/command line</li>
+<li>Open a web browser and navidate to <code>http://localhost:5000</code></li>
 </ol>
